@@ -1,0 +1,45 @@
+caseAdminId : 10
+caseApplianceId : 1
+caseFileRepository : "Case009"
+caseId : 138
+caseName : "Case009"
+casePassword : ""
+clientName : "DevClient"
+createdByUserId : 1
+createdTimeStamp : 1473751941000
+databaseCreated : null
+defaultView : 1
+demoFlag : true
+ecaIndexApplianceServer : "Sandbox 53"
+ecacreatedByUserId : null
+ecadbApplianceServer : "SandBox 53"
+ecadbapplianceId : 1
+ecadbcreationDate : null
+ecaindexApplianceId : 1
+encodingScheme : "UTF-8"
+exportFilePath : "loadfiles/userloadfiles0/DEV/sei"
+fileServerName : "Sandbox 53"
+groupName : "DevGroup"
+indexApplianceServer : "SandBox 53" 
+keywords : null
+lastModifiedByUserId : 1
+lastModifiedTimeStamp : 1475824018000
+masterClient : 1
+masterFileServer : 1
+masterGroup : 1
+matterId : 4
+matterName : "Any Matter Occupies Space"
+maxFileSize : null
+newCase : false
+newCaseAdmin : false
+notes : "Case009 notes"
+nytrixCase : null
+ocrtimeout : null
+primaryCaseAdminUser : {masterStatus: null, masterUserType: null,...}
+recordActiveFlag : true
+sqlfullTextLanguage : null
+statusDesc : "Active"
+statusId : 1
+webUrl : "Case009.com.aa"
+zoneId : 1
+zoneName : "UTC/GMT"
