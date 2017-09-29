@@ -1,0 +1,18 @@
+    <section class="case-container">
+        <div class="header" [class.view-mode]="viewMode == 'view'"> Export Folder Path</div>
+        <div class="section">
+            <div class="inputs">
+                <span class="labels">
+                    <label>Folder Path: </label>
+                </span>
+                <div>
+                    <input type="text" class="md-input" readonly
+                        [(ngModel)]="caseDTOObject.exportFilePath"  
+                        [class.width75-percent]="viewMode != 'view'" 
+                        [class.text-view]="viewMode == 'view'" />
+                    <button id="btnAdd" class="md-btn md-btn-secondary" *ngIf="viewMode != 'view'" (click)="showExportModal()">Browse</button>
+                </div>
+            </div>
+        </div>
+    </section>
+    <isi-export-folder-modal (emitSelectedFolder)="caseDTOObject.exportFilePath = $event"></isi-export-folder-modal>

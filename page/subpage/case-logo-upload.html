@@ -1,0 +1,18 @@
+<section class="case-container">
+    <div class="section">
+        <div class="inputs">
+            <span class="labels">
+                <label>Case Logo</label>
+            </span>
+            <div>
+                <span class="image-preview">
+                    <img  [src]="imageSrc" alt="Case Logo">
+                </span>
+                <div class="file-upload md-btn md-btn-secondary" *ngIf="viewMode != 'view'" >
+                    <span>Upload</span>
+                    <input type="file" #img class="upload" accept="image/*" (change)="onChangeFile($event)" />
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

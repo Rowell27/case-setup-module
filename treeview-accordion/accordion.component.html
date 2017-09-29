@@ -1,0 +1,22 @@
+<div class="accord-wrapper">
+    <div class="half" [class.halff]="!isChild" [class.fullwidth]="isChild">
+        <div class="tab" *ngFor="let obj of object; let i = index" [class.indented]="isChild">
+            <input [id]="obj[iteratedLabel]" type="checkbox" name="tabs" (click)="expandTree( i, obj )" >
+            <label [for]="obj[iteratedLabel]" [class.has-child]="isChildFolder( obj )" ></label><!--
+            --><span (click)="selectedItem(obj)">
+                <i class="fa fa-folder"></i>{{ obj[iteratedLabel] }}
+            </span>
+                
+            <div class="tab-content">
+                <isi-accordion *ngIf="obj[childIteration]"
+                    [isChild]="true"
+                    [iteratedLabel]="iteratedLabel"
+                    [object]="obj[childIteration]"
+                    [childCounter]="childCounter"
+                    (selected) = "selectedItem($event)"
+                    (childExpand)="expand.emit($event)">
+                </isi-accordion>
+            </div>
+        </div>
+    </div>
+</div>

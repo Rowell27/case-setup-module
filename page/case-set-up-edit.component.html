@@ -1,0 +1,66 @@
+
+    <div class="breadcrumbs">
+        <span>      
+            <label>Case Management » Case Setup » 
+                <span *ngIf="mode == 'add'"> Add </span>
+                <span *ngIf="mode == 'edit'"> Edit </span>
+            </label>
+        </span>
+        <span class="buttons">
+            <input type="button" class="md-btn md-btn-secondary" value="Cancel" (click)="initializeModal()"/>
+        </span> 
+    </div>
+
+
+    <article class="case-wrapper"> 
+        <p-steps id="psteps" [model]="steps" [readonly]="true" [(activeIndex)]="activeStep"></p-steps>
+        
+        <div class="wizard-container" [class.hidden]="activeStep != 0">
+            <case-details [step]="activeStep" [viewMode]="mode" [caseDTOObject]="caseDTO" (validateEvent)="validateStep( $event )"></case-details>
+            <case-logo-upload [viewMode]="mode"></case-logo-upload>
+        </div>
+
+        <div class="wizard-container" [class.hidden]="activeStep != 1 ">
+            <case-primary-case [step]="activeStep" [viewMode]="mode" [caseDTOObject]="caseDTO" (validateEvent)="validateStep( $event )"></case-primary-case>
+        </div>
+
+        <div class="wizard-container" [class.hidden]="activeStep != 2 ">
+            <case-processing [step]="activeStep" [viewMode]="mode" [caseDTOObject]="caseDTO" (validateEvent)="validateStep( $event )"></case-processing>
+            <case-review [step]="activeStep" [viewMode]="mode" [caseDTOObject]="caseDTO" (validateEvent)="validateStep( $event )"></case-review>
+        </div>
+
+        <div class="wizard-container" [class.hidden]="activeStep != 3 ">
+            <case-potf [viewMode]="mode" [caseDTOObject]="caseDTO"></case-potf>
+            <case-export-folder [viewMode]="mode" [caseDTOObject]="caseDTO"></case-export-folder>
+        </div>
+        
+        <ul class="pager">
+            <li class="previous" [class.hidden]="activeStep == 0">
+                <button (click)="activeStep=activeStep-1" >
+                    <span aria-hidden="true">&larr;</span> Previous
+                </button>
+            </li>
+            <li class="next">
+                <button [disabled]="steps[activeStep].hasErrors" [class.hidden]="activeStep == 3" (click)="activeStep=activeStep+1" >
+                    Next <span aria-hidden="true">&rarr;</span>
+                </button>
+                <button *ngIf="activeStep == 3" (click)="submitCase()">
+                    Submit <span aria-hidden="true">&rarr;</span>
+                </button>
+            </li>
+        </ul>
+
+
+        <isi-confirmation-modal
+            [Width] = "270"
+            [WidthPercent] = "'75%'"
+            [Header] = "'Confirmation'"
+            [MessageBody] ="'Are you sure you want to cancel changes?'"
+            [Visible] = "isVisibleConfirmation"
+            (Close) = "onCancel()"
+            (Approve) = "routeToList()" 
+            class="modal-confirm">
+        </isi-confirmation-modal>
+    </article>
+
+

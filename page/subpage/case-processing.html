@@ -1,0 +1,57 @@
+<section class="case-container">
+    <div class="header" [class.view-mode]="viewMode == 'view'"> Processing </div>
+    <div class="section">
+        <div class="inputs">
+            <span class="labels">
+                <label>Database Appliance: </label>
+            </span>
+            <div>
+                <span class="md-dropdown" [class.textview]="viewMode == 'view'">
+                    <select name="processDBAppliance" class="md-input"
+                        [(ngModel)]="caseDTOObject.ecadbapplianceId"
+                        [disabled]="viewMode == 'view'"
+                        [class.view-mode]="viewMode == 'view'"
+                        [class.error-input]="errorMsgCont.processingdb.msg" 
+                        (blur)="validateFields($event)"
+                        (change)="validateFields($event)">
+                        <option value="0" >Select Database Appliance...</option>
+                        <option *ngFor="let databaseList of masterDBApplianceList.resultList" [value]="databaseList.applianceId">
+                            {{ databaseList.ipaddress }}
+                        </option>
+                    </select>
+                </span>
+                <i class="fa fa-exclamation-circle" *ngIf="errorMsgCont.processingdb.msg"
+                    (mouseover)="displayError($event, errorMsgCont.processingdb.msg)"
+                    (mouseout)="displayError($event, errorMsgCont.processingdb.msg)"></i>
+            </div>
+        </div>
+        <div class="inputs">
+            <span class="labels">
+                <label>Index Appliance: </label>
+            </span>
+            <div>
+                <span class="md-dropdown" [class.textview]="viewMode == 'view'">
+                    <select name="processIndexAppliance" class="md-input"
+                        [(ngModel)]="caseDTOObject.ecaindexApplianceId"
+                        [disabled]="viewMode == 'view'"
+                        [class.view-mode]="viewMode == 'view'"
+                        [class.error-input]="errorMsgCont.processingindex.msg" 
+                        (blur)="validateFields($event)"
+                        (change)="validateFields($event)">
+                        <option value="0" >Select Index Appliance...</option>
+                        <option *ngFor="let indexList of masterIndexApplianceList.resultList" [value]="indexList.fileServerId">
+                            {{ indexList.hostName }}
+                        </option>
+                    </select>
+                </span>
+                <i class="fa fa-exclamation-circle" *ngIf="errorMsgCont.processingindex.msg"
+                    (mouseover)="displayError($event, errorMsgCont.processingindex.msg)"
+                    (mouseout)="displayError($event, errorMsgCont.processingindex.msg)"></i>
+            </div>
+        </div>
+    </div>
+</section>
+
+<div #tooltip class="popup-tooltip" [class.show]="toggleTooltip" [class.error-msg]="errorMessage"> 
+    <span> {{ errorMessage }} </span>
+</div>

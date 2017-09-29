@@ -1,0 +1,178 @@
+<section class="case-container">
+    <div class="section" id="container">
+        <div class="inputs">
+            <span class="labels"> 
+                <label>Case Name</label> <span class="textRequired">*</span>
+            </span>
+            <div>
+                <input type="text" name="caseName" class="md-input" [disabled]="viewMode == 'view'"
+                    [(ngModel)]="caseDTOObject.caseName"
+                    [class.text-view]="viewMode == 'view'" 
+                    [class.error-input]="errorMsgCont.casename.msg && viewMode != 'view'" 
+                    (blur)="validateFields($event)"
+                    (keyup)="validateFields($event)" />
+                <i id="casename" class="fa fa-exclamation-circle"
+                    *ngIf="errorMsgCont.casename.msg"
+                    (mouseover)="displayError($event, errorMsgCont.casename.msg)"
+                    (mouseout)="displayError($event, errorMsgCont.casename.msg)"></i>
+            </div>
+        </div>
+        <div class="inputs">
+            <span class="labels"> 
+                <label>Host</label> 
+            </span>
+            <div>
+                <input type="text" name="caseHost" class="md-input" 
+                    [(ngModel)]="caseDTOObject.groupName" 
+                    [class.text-view]="viewMode == 'view'" 
+                    [readonly]="viewMode == 'add'" 
+                    [disabled]="viewMode != 'add'"/>
+            </div>
+        </div>
+        <div class="inputs">
+            <span class="labels"> 
+                <label>Client</label>
+            </span>
+            <div>
+                <input type="text" name="caseClient" class="md-input" 
+                    [(ngModel)]="caseDTOObject.clientName" 
+                    [class.text-view]="viewMode == 'view'"
+                    [readonly]="viewMode == 'add'" 
+                    [disabled]="viewMode != 'add'"/>
+            </div>
+        </div>
+        <div class="inputs">
+            <span class="labels">
+                <label>Matter</label>
+            </span>
+            <div>
+                <span class="md-dropdown" [class.textview]="viewMode == 'view'">
+                    <select name="matterName" class="md-input"
+                        [(ngModel)]="caseDTOObject.matterId" 
+                        [disabled]="viewMode == 'view'"
+                        [class.view-mode]="viewMode == 'view'"
+                        [class.width75-percent]="viewMode != 'view'"
+                        [class.error-input]="errorMsgCont.matter.msg" 
+                        (blur)="validateFields($event)"
+                        (change)="validateFields($event)">
+                        <option value="0" disabled hidden>Select Matter...</option>
+                        <option *ngFor="let matter of masterMatterList.resultList" [value]="matter.matterId">
+                            {{ matter.matterName }} 
+                        </option>
+                    </select>
+                </span>
+                <button id="btnAdd" class="md-btn md-btn-secondary" *ngIf="viewMode != 'view'" (click)="onClickAddMatter()">Add Matter</button>
+
+                <i id="mattername" class="fa fa-exclamation-circle" 
+                    *ngIf="errorMsgCont.matter.msg"
+                    (mouseover)="displayError($event, errorMsgCont.matter.msg )"
+                    (mouseout)="displayError($event, errorMsgCont.matter.msg )"></i>
+            </div>
+        </div>
+
+        <div class="inputs">
+            <span class="labels">
+                <label>Time Zone</label>
+            </span>
+            <div>
+                <span class="md-dropdown" [class.textview]="viewMode != 'add'">
+                    <select name="timeZone" class="md-input" 
+                        [(ngModel)]="caseDTOObject.zoneId"
+                        [class.view-mode]="viewMode == 'view'"
+                        [disabled]="viewMode != 'add'">
+                        <option *ngFor="let timeZones of masterTimeZoneList.resultList" [value]="timeZones.zoneId">
+                              {{ timeZones.zoneName }}  
+                        </option>
+                    </select>
+                </span>
+          
+                <!--<i id="timezone" class="fa fa-exclamation-circle" 
+                    *ngIf="errorMsgCont.timezone.msg"
+                    (mouseover)="displayError($event, errorMsgCont.timezone.msg)"
+                    (mouseout)="displayError($event, errorMsgCont.timezone.msg)"></i>-->
+            </div>
+        </div>
+        <div class="inputs">
+            <span class="labels">
+                <label>Encoding Scheme</label>
+            </span>
+            <div>
+                <span class="md-dropdown" [class.textview]="viewMode != 'add'">
+                    <select name="encodingScheme" class="md-input"
+                        [(ngModel)]="caseDTOObject.encodingScheme" 
+                        [class.view-mode]="viewMode == 'view'"
+                        [class.error-input]="errorMsgCont.encodingscheme.msg" 
+                        [disabled]="viewMode != 'add'"
+                        (blur)="validateFields($event)"
+                        (change)="validateFields($event)">
+                        <option value="" disabled hidden>Select Encoding Scheme...</option>
+                        <option value="UTF-8"> UTF-8 </option>
+                        <option value="Unicode"> Unicode </option>
+                        <option value="Big-Endian"> Big-Endian </option>
+                    </select>
+                </span>
+
+                <i id="encodingscheme" class="fa fa-exclamation-circle" 
+                    *ngIf="errorMsgCont.encodingscheme.msg"
+                    (mouseover)="displayError($event, errorMsgCont.encodingscheme.msg)"
+                    (mouseout)="displayError($event, errorMsgCont.encodingscheme.msg)"></i>
+            </div>
+        </div>
+        <div class="inputs">
+            <span class="labels">
+                <label>Case Status</label>
+            </span>
+            <div>
+                <span class="md-dropdown" [class.textview]="viewMode == 'view'">
+                    <select name="caseStatus" class="md-input"
+                        [(ngModel)]="caseDTOObject.statusId"
+                        [disabled]="viewMode == 'view'" 
+                        [class.view-mode]="viewMode == 'view'">
+                        <option *ngFor="let caseStatus of masterCaseStatusList.resultList" [value]="caseStatus.statusId">
+                             {{ caseStatus.statusDescription }} 
+                        </option>
+                    </select>
+                </span>
+            </div>
+        </div>
+        <div class="inputs">
+            <span class="labels">
+                <label>Case Type</label>
+            </span>
+            <div>
+                <span class="md-dropdown" [class.textview]="viewMode == 'view'">
+                    <select name="caseType" class="md-input" 
+                        [(ngModel)]="caseDTOObject.demoFlag"
+                        [disabled]="viewMode == 'view'" 
+                        [class.view-mode]="viewMode == 'view'">
+                        <option value="true"> Demo Case </option>
+                        <option value="false"> Live Case </option>
+                    </select>
+                </span>
+            </div>
+        </div>
+        <div class="inputs">
+            <span class="labels">
+                <label>Default View</label>
+            </span>
+            <div>
+                <span class="md-dropdown" [class.textview]="viewMode == 'view'">
+                    <select name="defaultView" class="md-input" 
+                        [(ngModel)]="caseDTOObject.defaultView"
+                        [disabled]="viewMode == 'view'"
+                        [class.view-mode]="viewMode == 'view'">
+                        <option value="1"> Viewer Tab </option>
+                        <option value="2"> Text Preview Tab </option>
+                    </select>
+                </span>
+            </div>
+        </div>
+    </div>
+</section>
+
+<isi-add-matter-modal
+    (emitCreatedMatter)="getNewMatter($event)">
+</isi-add-matter-modal>
+
+<div #tooltip class="popup-tooltip error-msg" [class.show]="toggleTooltip"> {{errorMessage}} </div>
+

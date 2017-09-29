@@ -1,0 +1,102 @@
+<div class="breadcrumbs" >
+    <span>
+        <label>Case Management » Case Setup » List</label>
+    </span>
+    <span class="buttons">
+        <input type="button" class="md-btn md-btn-secondary" value="Create Case" routerLink="./add">
+    </span>
+</div>
+
+<div class="container gutter-wrapper">
+    <div class="pull-right">
+        <button class="btn-icon-flat" title="Print Preview">
+            <i class="fa fa-print"></i>
+        </button>
+        <button class="btn-icon-flat" (click)="clickReset()" title="Reset">
+            <i class="fa fa-refresh"></i>
+        </button>
+        <button class="btn-icon-flat" (click)="clickSearch()" title="Search">
+            <i class="fa fa-search"></i>
+        </button>
+        <paginator #paginatorCaseList 
+            [totalResultCount]='masterCaseList.resultCount' 
+            [pageNumber]='masterCaseList.currentPage'  
+            (notify)='onPaginate($event)'
+            class="d-iblock">
+        </paginator>
+    </div>
+    <div class="clear-fix"></div>
+    <div class="list-wrapper">
+        <table class="md-table">
+            <thead><tr>
+                <th> Action </th>
+                
+                <th> Case Name 
+                    <field-sorter #sortCaseName id="caseNameSort"
+                        [sort-field]="sortField_caseName"
+                        (onTriggerSort)="sortContent('caseNameSort')"
+                    ></field-sorter>
+                    <input id="caseNameFilter" type="text" class="form-control" 
+                        [(ngModel)]="caseName"  
+                        (ngModelChange)="autoSuggest('caseNameFilter', $event)"
+                        (blur)="onBlur()"
+                        (keydown)="onKeyDown('caseNameFilter', 'suggestCase', $event )" 
+                        (keyup)="filterEvent('caseNameFilter', caseName, $event)" 
+                        (paste)="filterEvent('caseNameFilter', caseName, $event)" 
+                        [disabled]="disableColumnFilter"/>
+                    <div id="suggestCase" class="auto-suggest" *ngIf="keywordsListCase.length>0">
+                        <div *ngFor="let keyword of keywordsListCase; let idx = index" [id]="idx" (mousedown)="selectItem('caseNameFilter', keyword.caseName)">{{ keyword.caseName }}</div>
+                    </div>
+                </th>
+                <th> Matter Name 
+                    <field-sorter #sortMatterName id="matterNameSort"
+                        [sort-field]="sortField_matterName"
+                        (onTriggerSort)="sortContent('matterNameSort')"
+                    ></field-sorter>
+                    <input id="matterNameFilter" type="text" class="form-control" 
+                        [(ngModel)]="matterName"  
+                        (ngModelChange)="autoSuggest('matterNameFilter', $event)"
+                        (blur)="onBlur()"
+                        (keydown)="onKeyDown('matterNameFilter', 'suggestMatter', $event )" 
+                        (keyup)="filterEvent('matterNameFilter', matterName, $event)" 
+                        (paste)="filterEvent('matterNameFilter', matterName, $event)" 
+                        [disabled]="disableColumnFilter"/>
+                    <div id="suggestMatter" class="auto-suggest" *ngIf="keywordsListMatter.length>0">
+                        <div *ngFor="let keyword of keywordsListMatter" (mousedown)="selectItem('matterNameFilter', keyword.matterName)">{{ keyword.matterName }}</div>
+                    </div>
+                </th>   
+                <th> Case Status 
+                    <field-sorter #sortCaseStatus id="caseStatusSort"
+                        [sort-field]="sortField_statusId"
+                        (onTriggerSort)="sortContent('caseStatusSort')"
+                    ></field-sorter>
+                    <select id="caseStatusFilter" class="form-control" 
+                        [(ngModel)]="caseStatus" 
+                        (change)="filterEvent('caseStatusFilter', caseStatus, $event)" 
+                        [disabled]="disableColumnFilter">
+                            <option value="">Case Status...</option>
+                            <option value="1">Active</option>
+                            <option value="2">Inactive</option>
+                    </select>   
+                </th>                     
+            </tr></thead>
+            <tbody>
+                <tr *ngFor="let cases of masterCaseList.resultList">
+                    <td class="text-center">
+                        <button class="btn-icon-flat" routerLink="./view/case/{{ cases.caseId }}">
+                            <i class="fa fa-search"></i>
+                        </button>
+                        <button class="btn-icon-flat" routerLink="./edit/{{ cases.caseId }}">
+                            <i class="fa fa-pencil"></i>
+                        </button>
+                    </td>
+                   
+                    <td> {{ cases.caseName }} </td>
+                    <td> {{ cases.matterName }} </td>
+                    <td> {{ cases.statusDesc }} </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+</div>

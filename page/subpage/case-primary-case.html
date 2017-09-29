@@ -1,0 +1,228 @@
+<section class="case-container" >
+    <div class="section">
+        <div class="inputs">
+            <span class="labels"> <label>Case Administrator</label> </span>
+            <div>
+                <span class="md-radio">
+                    <input type="radio" name="groupOptions" [(ngModel)]="selectPrimaryCase" (ngModelChange)="clear()" value="add-admin" id="add-admin" />
+                    <label for="add-admin">Add Case Admin</label>
+                </span>
+                <span class="md-radio">
+                    <input type="radio" name="groupOptions" [(ngModel)]="selectPrimaryCase" (ngModelChange)="clear()" value="select-admin" id="select-admin" />
+                    <label for="select-admin">Select Case Admin</label>
+                </span> 
+            </div>
+        </div>
+
+        <div *ngIf="selectPrimaryCase == 'select-admin'" class="inputs">
+            <span class="labels">
+                <label>Select Primary Admin</label>
+            </span>
+            <div>
+                <span class="md-dropdown">
+                    <select name="caseAdmin" class="md-input"
+                        [(ngModel)]="caseDTOObject.caseAdminId" 
+                        [class.error-input]="errorMsgCont.caseadmin.msg" 
+                        (blur)="validateFields($event)"
+                        (change)="validateFields($event)">
+                        <option value="0" disabled hidden>Select User Account...</option>
+                        <option *ngFor="let users of masterUserListDTO.resultList" [value]="users.userId">
+                            {{ users.userFullName }}
+                        </option>
+                    </select>
+                </span>
+                <span *ngIf="selectPrimaryCase == 'select-admin'">
+                    <i class="fa fa-exclamation-circle" *ngIf="errorMsgCont.caseadmin.msg"
+                        (mouseover)="displayError($event, errorMsgCont.caseadmin.msg)"
+                        (mouseout)="displayError($event, errorMsgCont.caseadmin.msg)"></i>
+                </span>
+            </div>
+        </div>
+
+        <div class="contents">
+            <div class="inputs">
+                <span class="labels">
+                    <label>Username</label>
+                </span>
+                <div>
+                    <input type="text" name="userName" class="md-input" 
+                        [(ngModel)]="caseDTOObject.primaryCaseAdminUser.userName"
+                        [readonly]="toggleDisabled"
+                        [class.error-input]="errorMsgCont.username.msg" 
+                        (blur)="validateFields($event)"
+                        (change)="validateFields($event)"/>
+                    <span *ngIf="selectPrimaryCase == 'add-admin'">
+                        <i class="fa fa-info-circle" *ngIf="!errorMsgCont.username.msg"
+                            (mouseover)="displayInfo($event, 'username')"
+                            (mouseout)="displayInfo($event, 'username')"></i>
+                        <i class="fa fa-exclamation-circle" *ngIf="errorMsgCont.username.msg"
+                            (mouseover)="displayError($event, errorMsgCont.username.msg)"
+                            (mouseout)="displayError($event, errorMsgCont.username.msg)"></i>
+                    </span>
+                </div>
+            </div>
+            <div class="inputs">
+                <span class="labels">
+                    <label>Full Name</label>
+                </span>
+                <div>
+                    <input type="text" name="fullName" class="md-input" 
+                        [(ngModel)]="caseDTOObject.primaryCaseAdminUser.userFullName"
+                        [readonly]="toggleDisabled"
+                        [class.error-input]="errorMsgCont.fullname.msg" 
+                        (blur)="validateFields($event)"
+                        (change)="validateFields($event)"/>
+                    <span *ngIf="selectPrimaryCase == 'add-admin'">
+                        <i class="fa fa-info-circle" *ngIf="!errorMsgCont.fullname.msg"
+                            (mouseover)="displayInfo($event, 'fullname')"
+                            (mouseout)="displayInfo($event, 'fullname')"></i>
+                        <i class="fa fa-exclamation-circle" *ngIf="errorMsgCont.fullname.msg"
+                            (mouseover)="displayError($event, errorMsgCont.fullname.msg)"
+                            (mouseout)="displayError($event, errorMsgCont.fullname.msg)"></i>
+                    </span>
+                </div>
+            </div>
+            <div class="inputs">
+                <span class="labels">
+                    <label>Email Address</label>
+                </span>
+                <div>
+                    <input type="text" name="emailAddress" class="md-input" 
+                        [(ngModel)]="caseDTOObject.primaryCaseAdminUser.emailAddress" 
+                        [readonly]="toggleDisabled"
+                        [class.error-input]="errorMsgCont.email.msg" 
+                        (blur)="validateFields($event)"
+                        (change)="validateFields($event)"/>
+                    <span *ngIf="selectPrimaryCase == 'add-admin'">
+                        <i class="fa fa-exclamation-circle" *ngIf="errorMsgCont.email.msg"
+                            (mouseover)="displayError($event, errorMsgCont.email.msg)"
+                            (mouseout)="displayError($event, errorMsgCont.email.msg)"></i>
+                    </span>
+                </div>
+            </div>
+            <div class="inputs" *ngIf="selectPrimaryCase == 'add-admin'">
+                <span class="labels">
+                    <label>User Password</label>
+                </span>
+                <div>
+                    <input type="password" name="password" class="md-input"
+                        [(ngModel)]="caseDTOObject.primaryCaseAdminUser.password"
+                        [class.error-input]="errorMsgCont.password.msg" 
+                        (blur)="validateFields($event)"
+                        (change)="validateFields($event)"/>
+                    <span>
+                        <i class="fa fa-info-circle" *ngIf="!errorMsgCont.password.msg"
+                            (mouseover)="displayInfo($event, 'password')"
+                            (mouseout)="displayInfo($event, 'password')"></i>
+                        <i class="fa fa-exclamation-circle" *ngIf="errorMsgCont.password.msg"
+                            (mouseover)="displayError($event, errorMsgCont.password.msg)"
+                            (mouseout)="displayError($event, errorMsgCont.password.msg)"></i>
+                    </span>
+                </div>
+            </div>
+            <div class="inputs" *ngIf="selectPrimaryCase == 'add-admin'">
+                <span class="labels">
+                    <label>Confirm Password</label>
+                </span>
+                <div>
+                    <input type="password" name="confirmPassword" class="md-input"
+                        [(ngModel)]="caseDTOObject.primaryCaseAdminUser.confirmPassword"
+                        [class.error-input]="errorMsgCont.confirmpass.msg" 
+                        (blur)="validateFields($event)"
+                        (change)="validateFields($event)"/>
+                    <span>
+                        <i class="fa fa-exclamation-circle" *ngIf="errorMsgCont.confirmpass.msg"
+                            (mouseover)="displayError($event, errorMsgCont.confirmpass.msg)"
+                            (mouseout)="displayError($event, errorMsgCont.confirmpass.msg)"></i>
+                    </span>
+                </div>
+            </div>
+            <div class="inputs" *ngIf="selectPrimaryCase == 'add-admin'">
+                <span class="labels">
+                    <label>Allowed Password Change</label>
+                </span>
+                <div>
+                    <span class="md-radio options">
+                        <input type="radio" name="allowedPasswordOptions" [value]="true" id="yes" checked 
+                            [(ngModel)]="caseDTOObject.primaryCaseAdminUser.allowPasswordChange" />
+                        <label for="yes">Yes</label>
+                    </span>
+                    <span class="md-radio options">
+                        <input type="radio" name="allowedPasswordOptions" [value]="false" id="no" 
+                            [(ngModel)]="caseDTOObject.primaryCaseAdminUser.allowPasswordChange" />
+                        <label for="no">No</label>
+                    </span>
+                </div>
+            </div> 
+            <div class="inputs" *ngIf="selectPrimaryCase == 'add-admin'">
+                <span class="labels">
+                    <label>Send PIN for Authentication</label>
+                </span>
+                <div>
+                    <span class="md-checkbox">
+                        <input type="checkbox" name="authenticateSMS" value="sms" id="sms" disabled [(ngModel)]="caseDTOObject.primaryCaseAdminUser.pinForAuthenticationSMS"/>
+                        <label for="sms">SMS</label>
+                    </span>
+                    <span class="md-checkbox">
+                        <input type="checkbox" name="authenticateEmail" value="email" id="email" [(ngModel)]="caseDTOObject.primaryCaseAdminUser.pinForAuthenticationEmail"/>
+                        <label for="email">Email</label>
+                    </span>
+                </div>
+            </div>
+            <div class="inputs">
+                <span class="labels">
+                    <label>Phone Country Code</label>
+                </span>
+                <div>
+                    <span class="md-dropdown" [class.textview]="selectPrimaryCase == 'select-admin'">
+                        <select name="selectedCountryCode" class="md-input"
+                            [(ngModel)]="caseDTOObject.primaryCaseAdminUser.selectedCountryCode"
+                            [disabled]="toggleDisabled">
+                            <option value="" disabled hidden>Select Country Code...</option>
+                            <option *ngFor="let countryCodes of masterCountryListDTO.resultList" [value]="countryCodes.countryCode">
+                                (+{{countryCodes.phoneFormat}}) {{countryCodes.countryName}}
+                            </option>
+                        </select>
+                    </span>
+                    <!--<span *ngIf="selectPrimaryCase != 'add-admin'">-->
+                        <!--{caseDTOObject.primaryCaseAdminUser.phoneFormat} {{caseDTOObject.primaryCaseAdminUser.countryName}}-->
+                        <!--<input type="text" class="md-input" [disabled]="toggleDisabled" [(ngModel)]="caseDTOObject.primaryCaseAdminUser.selectedCountryCode"/>
+                    </span>-->
+                    <!--<span *ngIf="selectPrimaryCase == 'add-admin'">
+                        <i class="fa fa-exclamation-circle" *ngIf="errorMsgCont.countrycode.msg"
+                            (mouseover)="displayError($event, errorMsgCont.countrycode).msg"
+                            (mouseout)="displayError($event, errorMsgCont.countrycode).msg"></i>
+                    </span>-->
+                </div>
+            </div>     
+                <div class="inputs">
+                    <span class="labels">
+                        <label>Mobile Number</label>
+                    </span>
+                    <div>                
+                        <input type="text" name="mobileNumber" class="md-input"
+                            [(ngModel)]="caseDTOObject.primaryCaseAdminUser.mobileNumber"
+                            [readonly]="toggleDisabled"
+                            [class.error-input]="errorMsgCont.mobile.msg" 
+                            (blur)="validateFields($event)"
+                            (keyup)="validateFields($event)">
+                        <span *ngIf="selectPrimaryCase == 'add-admin'">
+                            <i class="fa fa-info-circle" *ngIf="!errorMsgCont.mobile.msg"
+                                (mouseover)="displayInfo($event, 'mobile')"
+                                (mouseout)="displayInfo($event, 'mobile')"></i>    
+                            <i class="fa fa-exclamation-circle" *ngIf="errorMsgCont.mobile.msg"
+                                (mouseover)="displayError($event, errorMsgCont.mobile.msg)"
+                                (mouseout)="displayError($event, errorMsgCont.mobile.msg)"></i>
+                        </span>
+                    </div>
+                </div>     
+        </div>
+    </div>
+</section>
+
+<div #tooltip class="popup-tooltip" [class.show]="toggleTooltip" [class.error-msg]="errorMessage" [class.info-msg]="!errorMessage"> 
+    <span *ngIf="errorMessage"> {{ errorMessage }} </span>
+    <span *ngIf="infoMessage">
+        <span *ngFor="let info of infoMessage">* {{ info }} </span> 
+    </span>
+</div>

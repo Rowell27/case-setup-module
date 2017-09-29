@@ -1,0 +1,26 @@
+
+<div class="container">
+    <ui-modal Header="Export Folder" Type="Modal" Width="450" [(Visible)]="toggleModal" (Close)="close()">
+        <div modal-body class="modal-container">
+            <label class="text-bold">Select Folder Path</label>
+            <i class="fa fa-undo pull-right" (click)="reset()"></i>
+            <div class="modal-wrapper">
+                <isi-accordion *ngIf="masterExportFolderListDTO.length > 0"
+                    [subjectListener]="subjectPasser"
+                    [object]="masterExportFolderListDTO"
+                    [iteratedLabel]="'folderName'"
+                    [childIteration]="'children'"
+                    [childCounter]="'childrenIds'"
+                    (selected)="selectedPath( $event )"
+                    (expand)="loadChildFolderList( $event )" >
+                </isi-accordion>
+            </div>
+            <label class="text-bold">Export Default Path:</label>
+            <input type="text" class="md-input" readonly [(ngModel)]="folderPath">            
+        </div>
+        <div modal-footer class="text-center">
+            <button class="btn" [disabled]="hasError" (click)="onClickSubmitSelection(folderPath)" >Submit</button>
+            <button class="btn"(click)="onClickCancel()">Cancel</button>
+        </div>
+    </ui-modal>
+</div>

@@ -1,0 +1,92 @@
+
+    <div class="breadcrumbs">
+        <span>      
+            <label>Case Management » Case Setup » View
+            </label>
+        </span>
+        <span class="buttons">
+            <input type="button" class="md-btn md-btn-secondary" value="Back to List" (click)="routeToList()">
+        </span>
+    </div>
+
+    <article class="case-wrapper clear-fix"> 
+        <section class="wrapper">
+            <span class="header">Case Resource</span>
+            <case-logo-upload [viewMode]="mode"></case-logo-upload>
+            <case-details [viewMode]="mode" [caseDTOObject]="caseDTO"></case-details>
+        </section>
+        <section class="wrapper">
+            <span class="header">Appliance</span>
+            <case-processing [viewMode]="mode" [caseDTOObject]="caseDTO"></case-processing>
+            <case-review [viewMode]="mode" [caseDTOObject]="caseDTO"></case-review>
+
+            <span class="header">Other Setup</span>
+            <case-potf [viewMode]="mode" [caseDTOObject]="caseDTO"></case-potf>
+            <case-export-folder [viewMode]="mode" [caseDTOObject]="caseDTO"></case-export-folder>
+        </section>
+    </article>
+
+    <article class="case-wrapper">
+        <div class="accord">
+            <div class="accord-header" >
+                <span class="accord-title"> Primary Case Administrator
+                    <i class="fa fa-angle-down accord-caret" *ngIf="!show" aria-hidden="true" (click)="show=!show"></i>
+                    <i class="fa fa-angle-up accord-caret" *ngIf="show" aria-hidden="true" (click)="show=!show"></i>
+                </span>
+            </div>
+            <div class="accord-content" [class.show]="show">
+                <div class="container-fluid" [class.hide]="!show">
+                    <section class="wrapper">
+                        <div class="inputs">
+                            <span class="labels">
+                                <label>Full Name</label>
+                            </span>
+                            <div> {{caseDTO.primaryCaseAdminUser.userFullName}} </div>
+                        </div>
+                        <div class="inputs">
+                            <span class="labels">
+                                <label>Email Address</label>
+                            </span>
+                            <div> {{caseDTO.primaryCaseAdminUser.emailAddress}} </div>
+                        </div>
+                        <div class="inputs">
+                            <span class="labels">
+                                <label>Allowed Password Change</label>
+                            </span>
+                            <div> {{passChange}} </div>
+                        </div>
+                    </section>
+
+                    <section class="wrapper">
+                        <div class="inputs">
+                            <span class="labels">
+                                <label>Phone Format</label>
+                            </span>
+                            <div> 
+                                <span *ngIf="caseDTO.primaryCaseAdminUser.selectedCountryCode">
+                                    ( +{{caseDTO.primaryCaseAdminUser.phoneFormat}} ) {{caseDTO.primaryCaseAdminUser.countryName}}
+                                </span> 
+                                <span *ngIf="!caseDTO.primaryCaseAdminUser.selectedCountryCode" > None </span> 
+                            </div>
+                        </div>
+                        <div class="inputs">
+                            <span class="labels">
+                                <label>Mobile Number</label>
+                            </span>
+                            <div> {{caseDTO.primaryCaseAdminUser.mobileNumber}} 
+                                <span *ngIf="!caseDTO.primaryCaseAdminUser.mobileNumber" > None </span>
+                            </div>
+                        </div>
+                        <div class="inputs">
+                            <span class="labels">
+                                <label>Send Pin for Authentication</label>
+                            </span>
+                            <div> {{sendPin}} </div>
+                        </div>
+                    </section>
+                </div>
+            </div>
+        </div>
+    </article>
+
+    

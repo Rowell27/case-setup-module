@@ -1,0 +1,110 @@
+
+  .half {
+      float: left;
+      /*padding: 0 .5em;*/
+  }
+
+  .halff{ width: 50%; }
+  .fullwidth { width: 100%; }
+
+  /* Acordeon styles */
+  .tab {
+      position: relative;
+      margin-bottom: 1px;
+      width: 100%;
+      color: #000;
+      overflow: hidden;
+  }
+
+  .tab-child{
+      width: 95%;
+      margin-left: auto;
+  }
+
+  .tab-content {
+      max-height: 0;
+      overflow: hidden;
+      //background: #1abc9c;
+      -webkit-transition: max-height .35s;
+      -o-transition: max-height .35s;
+      transition: max-height .35s;
+  }
+
+  /*input {
+      position: absolute;
+      opacity: 0;
+      z-index: -1;
+  }*/
+
+  input[type=checkbox] { 
+      display: none; 
+  
+      //icon for expanding (default)
+      & + label:before {
+            content: "";
+            display: inline-block;
+            right: 0;
+            top: 0;
+            width: 1em;
+            height: 1em;
+            text-align: center;
+      }
+
+
+      //icon for expanding (if has child)
+      & + .has-child {
+            &:before { 
+                content: "+"; 
+                font-size: 16px;
+                font-weight: bold;
+                line-height: 1.1;
+                cursor: pointer;
+                -webkit-transition: all .35s;
+                -o-transition: all .35s;
+                transition: all .35s;
+            }
+
+            & + span { padding: 0 2px; }
+      }
+
+      &:checked + label { font-weight: bold; }
+      &:checked + label:before { transform: rotate(135deg); }
+      &:checked ~ .tab-content { max-height: 10em; }
+  }
+
+  span {
+      position: relative;
+      display: inline-block;
+      margin: 0;
+      padding: 0 0 0 0.5em;
+      font-size: 12px;
+      font-weight: normal;
+      color: #474747;
+      line-height: 2;
+      user-select: none;
+      cursor: default;
+      //background: #16a085;
+
+      .fa-folder { 
+            margin: 0 5px;
+            font-size: 14px;
+      }
+
+      &:active { font-weight: bold; }
+  }
+  
+  //indents child items
+  .indented{ padding-left: 15px; }
+
+  .blue label {
+      //background: #2980b9;
+  }
+
+  .blue .tab-content {
+      //background: #3498db;
+  }
+  .tab-content p { margin: 1em; }
+
+  
+  input[type=radio] + label:before { content: "\25BC"; }
+  input[type=radio]:checked + label:before { transform: rotateX(180deg); }

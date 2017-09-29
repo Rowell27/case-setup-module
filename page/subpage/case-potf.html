@@ -1,0 +1,29 @@
+<section class="case-container">
+    <div class="header" [class.view-mode]="viewMode == 'view'"> Processing-on-the-Fly </div>
+    <div class="section">
+        <div class="inputs">
+            <span class="labels">
+                <label>OCR Time-out Setting: </label>
+            </span>
+            <div>
+                <span class="md-dropdown" [class.textview]="viewMode == 'view'">
+                    <select class="md-input" [(ngModel)]="caseDTOObject.ocrtimeout" [disabled]="viewMode == 'view'">
+                        <option value="2">2 minutes</option>
+                    </select>
+                </span>
+            </div>
+        </div>
+        <div class="inputs">
+            <span class="labels">
+                <label>Maximum File Size Setting: </label>
+            </span>
+            <div>
+                <span class="md-dropdown" [class.textview]="viewMode == 'view'">
+                    <select class="md-input" [(ngModel)]="caseDTOObject.maxFileSize" [disabled]="viewMode == 'view'">
+                        <option value="20">20 MB</option>
+                    </select>
+                </span>
+            </div>
+        </div>
+    </div>
+</section>

@@ -1,0 +1,49 @@
+<form (ngSubmit)="onSubmitMatter(f)" #f="ngForm">
+    <div class="container">
+        <ui-modal Header="Add Matter" Type="Modal" Width="420" [(Visible)]="isModalAddMatterVisible" (Close)="close()">
+            <div modal-body class="text-left case-container modal-container">
+                <div #tooltip class="popup-tooltip" [class.show]="toggleTooltip" [class.error-msg]="errorMessage"> 
+                    <span> {{ errorMessage }} </span>
+                </div>
+                <div class="form-group">
+                    <label for="txtMatterName" [class.textRequired]="errorMessage">Matter</label>
+                    <span class="textRequired">*</span>
+                    <input type="text" id="txtMatterName" name="txtMatterName" class="md-input" required
+                        #txtMatterName="ngModel"
+                        (blur)="validateFields()"
+                        (keyup)="validateFields()"
+                        [(ngModel)]="masterMatterModel.matterName" 
+                        [class.error-input]="errorMessage"/>
+                    <i class="fa fa-exclamation-circle"
+                        *ngIf="errorMessage"
+                        (mouseover)="displayError($event, errorMessage)"
+                        (mouseout)="displayError($event, errorMessage)"></i>
+                </div>
+                <div class="form-group">
+                    <label>Description:</label>
+                    <textarea row="11" col="7" name="txtMatterDescription" class="md-input" [(ngModel)]="masterMatterModel.matterDescription"></textarea>
+                </div>
+                <div class="form-group">
+                    <label>Matter Status:</label><span class="textRequired">*</span>
+                    <select class="md-dropdown" name="cmbMasterStatus" [(ngModel)]="masterMatterModel.matterStatus" required #cmbMasterStatus="ngModel">
+                    <option *ngFor="let masterStatus of masterStatusDTOList" [value]="masterStatus.statusId">
+                        {{masterStatus.statusDescription}}
+                    </option>
+                </select>
+                    <i class="fa fa-exclamation-circle textRequired" aria-hidden="true" *ngIf="!cmbMasterStatus.valid" title="Value is required"></i>
+                </div>
+                <div>
+                    <span class="textRequired">*</span>
+                    <label> Required fields</label>
+                </div>
+
+            </div>
+            <div modal-footer class="text-center">
+                <button type="submit" class="btn" id="btnYes" [disabled]="!f.valid || hasDuplicate || this.errorMessage">Save</button>
+                <button class="btn" id="btnNo" (click)="onCancel()">Cancel</button>
+            </div>
+
+        </ui-modal>
+    </div>
+</form>
+<!--<div id="notification" class="notification hide"></div>-->

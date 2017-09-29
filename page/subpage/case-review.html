@@ -1,0 +1,57 @@
+ <section class="case-container">
+    <div class="header" [class.view-mode]="viewMode == 'view'"> Review </div>
+    <div class="section">
+        <div class="inputs">
+            <span class="labels">
+                <label>Database Appliance: </label>
+            </span>
+            <div>
+                <span class="md-dropdown" [class.textview]="viewMode == 'view'">
+                    <select name="reviewDBAppliance" class="md-input"
+                        [(ngModel)]="caseDTOObject.caseApplianceId"
+                        [disabled]="viewMode == 'view'"
+                        [class.view-mode]="viewMode == 'view'"
+                        [class.error-input]="errorMsgCont.reviewdb.msg" 
+                        (blur)="validateFields($event)"
+                        (change)="validateFields($event)">
+                        <option value="0" >Select Database Appliance...</option>
+                        <option *ngFor="let databaseList of masterDBApplianceList.resultList" [value]="databaseList.applianceId">
+                            {{ databaseList.ipaddress }}    
+                        </option>
+                    </select>
+                </span>
+                <i class="fa fa-exclamation-circle" *ngIf="errorMsgCont.reviewdb.msg"
+                    (mouseover)="displayError($event, errorMsgCont.reviewdb.msg)"
+                    (mouseout)="displayError($event, errorMsgCont.reviewdb.msg)"></i>
+            </div>
+        </div>
+        <div class="inputs">
+            <span class="labels">
+                <label>Index Appliance: </label>
+            </span>
+            <div>
+                <span class="md-dropdown" [class.textview]="viewMode == 'view'">
+                    <select name="reviewIndexAppliance" class="md-input"
+                        [(ngModel)]="caseDTOObject.masterFileServer"
+                        [disabled]="viewMode == 'view'"
+                        [class.view-mode]="viewMode == 'view'"
+                        [class.error-input]="errorMsgCont.reviewindex.msg" 
+                        (blur)="validateFields($event)"
+                        (change)="validateFields($event)">
+                        <option value="0" >Select Index Appliance...</option>
+                        <option *ngFor="let indexList of masterIndexApplianceList.resultList" [value]="indexList.fileServerId">
+                            {{ indexList.hostName }}
+                        </option>
+                    </select>
+                </span>
+                <i class="fa fa-exclamation-circle" *ngIf="errorMsgCont.reviewindex.msg"
+                    (mouseover)="displayError($event, errorMsgCont.reviewindex.msg)"
+                    (mouseout)="displayError($event, errorMsgCont.reviewindex.msg)"></i>
+            </div>
+        </div>
+    </div>
+</section>
+
+<div #tooltip class="popup-tooltip" [class.show]="toggleTooltip" [class.error-msg]="errorMessage"> 
+    <span> {{ errorMessage }} </span>
+</div>
