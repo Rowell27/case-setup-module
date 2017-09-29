@@ -1,0 +1,590 @@
+
+.section-search {
+    h3, .ui-tree-container {
+        color: $color-white;
+    }
+}
+
+/* ---------->>> I.   BUTTONS <<<----------- */
+
+	.btn {
+		@include btn-theme();
+		@include user-select(none);
+	}
+
+	.btn-flat {
+		background: $bg-btn-default;
+		color: $color-default;
+	}
+
+	.btn-icon-flat:hover:not(:disabled) {
+		color: $hover;
+	}
+
+	.btn-icon-flat:disabled {
+		cursor: not-allowed;
+		opacity: 0.4;
+	}
+
+	.btn-tool-bar .btn {
+		background: $color-white;
+	}
+
+	.doc-filter .btn.active, .doc-sort .btn.active {
+		color: $color-blue;
+		background-image: none;
+		outline: 0;
+		-webkit-box-shadow: inset 0 3px 5px rgba(0, 0, 0, .125);
+		box-shadow: inset 0 3px 5px rgba(0, 0, 0, .125);
+	}
+
+	.potf .btn-c-tags {
+        border: 1px solid #bbb;
+	}
+
+	.udv-pagination  {
+		.left-pagination {
+			@include udv-pagination(left);
+		}
+
+		.right-pagination {
+			@include udv-pagination(right);
+		}
+		
+	}
+
+/* ---------->>> END BUTTONS <<<----------- */
+
+
+
+/* ---------->>> II.  FORMS <<<----------- */
+
+	.form-control {
+		//@include user-select(none);
+		border: $border-textbox;
+		&:focus {
+			box-shadow: none;
+		}
+	}
+
+	.required {
+		color: $color-required;
+		border-color: $border-required;
+	}
+
+	.error {
+		color: $color-required;
+		border-color: $border-required;
+	}
+
+	[data-field="calendar-group"].error {
+		input, button {
+			border-color: $color-required !important;
+			color: $color-required !important;
+		}
+	}
+
+/* ---------->>> END FORMS <<<----------- */
+
+
+
+/* ---------->>> III. GLOBAL <<<----------- */
+
+	* { @include box-sizing(border-box); }
+	body{ background: $bg-body; color: $color-default;}
+	.divider { border-right: $border-divider; }
+
+	a {
+		color: $color-default;
+	}
+
+	.bg-transparent {
+		background-color: transparent !important;
+		border-color: transparent !important;
+	}
+
+/* ---------->>> END GLOBAL <<<----------- */
+
+
+
+/* ---------->>> IV. IMAGES/ICONS <<<----------- */
+
+/* ---------->>> END IMAGES/ICONS <<<----------- */
+
+
+
+/* ---------->>> V.  NAVIGATION <<<----------- */
+
+	.navbar {
+		background: $bg-nav;
+
+		ul {
+			background: $bg-nav;
+
+			li a {
+				color: $color-nav;
+			}
+
+			li ul {
+				background: $color-white;
+				box-shadow: $box-shadow-nav;
+
+				li:hover { background: $color-white; }
+
+				li a {
+					color: $color-default;
+
+					&:hover {
+						color: $color-blue;
+					}
+				}
+			}
+
+		}
+	}
+
+/* ---------->>> END NAVIGATION <<<----------- */
+
+
+
+/* ---------->>> VI.   PSUEDO CLASSES <<<----------- */
+
+	.btn:active {
+		@include btn-active();
+	}
+	.btn:focus {
+		outline: none !important;
+	}
+
+	.btn:disabled:not(.btn-icon) {
+		@include btn-disabled();
+	}
+
+	.icon-add-doc:active {
+        @include btnIconActive('../img/icons/add-doc.png');
+        background-position: center;
+        background-repeat: no-repeat;
+    }
+
+    .icon-calendar:active {
+        @include btnIconActive('../img/icons/calendar_icon.png');
+        background-position: center;
+        background-repeat: no-repeat;
+    }
+
+    .icon-caret-right:active {
+        @include btnIconActive('../img/icons/caret-right.png');
+        background-position: center;
+        background-repeat: no-repeat;
+    }
+
+    .icon-check:active {
+        @include btnIconActive('../img/icons/check.png');
+        background-position: center;
+        background-repeat: no-repeat;
+    }
+
+    .icon-copy:active {
+        @include btnIconActive('../img/icons/copy.png');
+        background-position: center;
+        background-repeat: no-repeat;
+    }
+
+    .icon-delete:active {
+        @include btnIconActive('../img/icons/delete_icon.png');
+        background-position: center;
+        background-repeat: no-repeat;
+    }
+
+    .icon-edit-doc:active {
+        @include btnIconActive('../img/icons/edit-doc.png');
+        background-position: center;
+        background-repeat: no-repeat;
+    }
+
+    .icon-filter:active {
+		@include btnIconActive('../img/icons/filters.png');
+		background-repeat: no-repeat;
+		background-position: left;
+	}
+
+	.icon-order:active {
+        @include btnIconActive('../img/icons/order.png');
+        background-position: center;
+        background-repeat: no-repeat;
+    }
+
+    .icon-settings:active {
+        @include btnIconActive('../img/icons/settings.png');
+        background-position: center;
+        background-repeat: no-repeat;
+    }
+
+    .icon-refresh:active {
+		@include btnIconActive('../img/icons/refresh-icon.png');
+		background-position: center;
+		background-repeat: no-repeat;
+	}
+	.icon-sort-active:active {
+         @include btnIconActive('../img/icons/sort-ascending-active.png');
+        background-position: center;
+        background-repeat: no-repeat;
+    }
+
+	.icon-sort-inactive:active {
+         @include btnIconActive('../img/icons/sort-ascending-inactive.png');
+        background-position: center;
+        background-repeat: no-repeat;
+    }
+
+	.navbar ul li:hover {
+		background-color: $hover-nav;
+	}
+
+	.tab .tab-heading a:last-child {
+        border-right: $border-default !important;
+    }
+
+    .table table tbody {
+        
+        tr:last-child {
+            border-bottom: $border-table;
+        }
+
+        tr:nth-child(even) {
+            background: $bg-table-stripe-even;
+        }
+
+        tr:nth-child(odd) {
+            background: $bg-table-stripe-odd;
+        }
+    }
+
+
+/* ---------->>> END PSUEDO CLASSES <<<----------- */
+
+
+
+/* ---------->>> VII.  TYPOGRAPHY <<<----------- */
+	.color-blue { color: $color-blue; }
+	.color-dark-blue { color: $color-dark-blue; }
+	.color-info { color: $color-info; }
+/* ---------->>> END TYPOGRAPHY <<<----------- */
+
+
+
+/* ---------->>> VIII.WRAPPER <<<----------- */
+
+	.c-box {
+		box-shadow: $box-shadow-2;
+		border: none !important;
+	}
+
+	.c-calendar {
+        button.ui-datepicker-trigger {
+            background: $bg-body;
+            border: $border-btn-default;
+            border-left: 0;
+        }
+        .ui-inputtext {
+            border: $border-btn-default;
+        }
+    }
+	
+	.collapse-container {
+		border-top: 1px solid $bg-btn-tab-primary;
+        border-right: 1px solid $bg-btn-tab-primary;
+        border-left: 1px solid $bg-btn-tab-primary;
+        box-shadow: 0 2px 2px 0 rgba(0,0,0,0.14), 0 1px 5px 0 rgba(0,0,0,0.12), 0 3px 1px -2px rgba(0,0,0,0.2);
+	}
+
+	.collapse-header {
+		background-color: #f3f2f2;
+        border-bottom: 1px solid $bg-btn-tab-primary;
+	}
+
+	.collapse-body {
+		border-bottom: 1px solid #fff;
+	}
+
+	.doc-snippet.active a {
+		color: $color-white;
+	}
+
+	.folder-tree {
+		background-color: $color-white;
+		border: $border-default;
+		border-top: none;
+	}
+
+	.panel {
+		box-shadow: none;
+	}
+
+	.panel-default .panel-heading {
+		@include user-select(none);
+		background-color: $bg-panel-heading-default;
+		color: $color-panel-heading-default;
+	}
+
+	.panel-primary {
+		border: $border-default;
+		box-shadow: $box-shadow;
+	}
+
+	.panel-primary {
+		.panel-body, .panel-footer {
+			background-color: $bg-panel-body-deafault;
+		}
+	}
+	
+	.panel-primary .panel-heading {
+		@include user-select(none);
+		background-color: $bg-panel-heading-primary;
+		border: $border-primary;
+		color: $color-panel-heading-primary;
+	}
+
+	.panel-secondary {
+		box-shadow: none;
+
+		.panel .panel-heading {
+			background: #d1d1d1;
+		}
+	}
+
+	.panel-secondary .panel-heading {
+		@include user-select(none);
+		box-shadow: none;
+		border: $border-default;
+		background-color: $bg-panel-heading-secondary;
+		color: $color-panel-heading-secondary;
+	}
+
+	.panel-secondary .panel-body {
+		border: $border-default;
+		background-color: $bg-panel-body-deafault;
+	}
+
+	.primary {
+		background: $bg-primary !important;
+	}
+
+	.primary-b {
+		background: $bg-primary !important;
+		border: $border-default;
+	}
+
+	.side-bar, .side-bar-main {
+		border: $border-default;
+	}
+
+	.tab-body {
+		background-color:$bg-btn-tab-body;
+		border: $border-default;
+	}
+
+	.tab-default .tab-heading {
+		a {
+			@include btn-tab-default();
+		}
+
+		a.tab-active {
+			@include btn-tab-default-active();
+		}
+	}
+
+	.tab-heading a {
+		@include user-select(none);
+	}
+
+	.tab-primary .tab-heading {
+		a {
+			@include btn-tab-primary();
+		}
+
+		a.tab-active {
+			@include btn-tab-primary-active();
+		}
+	}
+
+	.tab-md {
+
+        .tab-body {
+        	border-bottom: none;
+        	border-left: none;
+        	border-right: none;
+        }
+    }
+
+    .tab-view {
+    	ul.ui-tabview-nav {
+            background: none;
+            border: none;
+    	}
+
+    	ul.ui-tabview-nav > li {
+            background: $bg-btn-tab-default;
+            border:$border-default;
+            border-bottom: $border-default !important;
+    	}
+
+    	ul.ui-tabview-nav > li:not(:last-child) {
+            border-right: none;
+        }
+
+        ul.ui-tabview-nav > li.ui-state-active {
+            background: #fff;
+            border-bottom: 1px solid #fff !important;
+        }
+
+        .ui-widget-content {
+        	border: none;
+        }
+
+        .ui-tabview-panels .ui-tabview-panel {
+            border: 1px solid #ccc;
+        }
+
+        .table thead {
+        	background: $bg-table-header-2;
+        }
+    }
+
+	.table {
+		table {
+			thead {
+				background: $bg-table-header;
+
+				tr th {
+					border: $border-table;
+				}
+			}
+
+			tbody {
+				tr td {
+					border-left: $border-table;
+					border-right: $border-table;
+				}
+			}
+		}
+	}
+
+	.table.table-bordered {
+		th {
+			border: $border-table;
+		}
+	}
+
+	.theme-g {
+		background: $theme-g; 
+		border: $border-default;
+	}
+
+	.title-bar {
+		border-bottom: $border-bottom;
+	}
+
+	.ui-treeview label.active {
+		color: $color-dark-blue !important;
+	}
+
+	.wrap-default {
+		background-color: $wrap-default;
+	}
+
+	.wrap-primary {
+		background-color: $wrap-primary;
+		border: $border-wrap-primary;
+	}
+
+	.workflow-container {
+		.panel-heading {
+			border-color: $bg-btn-tab-primary;
+		}
+		.panel-body {
+			border: none;
+			.fa-chevron-right {
+				color: $color-btn-disabled;
+			}
+		}
+
+		.table-responsive {
+			box-shadow: $box-shadow-2;
+
+			thead {
+				background: $bg-table-header-2;
+			}
+		}
+	}
+
+	.workflow-apply {
+		.table.table-bordered thead {
+			background: $bg-table-header-2;
+		}
+	}
+
+	// Modal Wrapper
+
+	.modal-workflow-selection {
+		.rdo-group {
+			margin-bottom: 10px;
+		}
+
+		select {
+			height: 26px;
+			font-size: 12px;
+			width: 90%;
+			margin: 0 auto;
+
+		}
+	}
+
+	.modal-container .fa-refresh {
+		color: $color-blue;
+	}
+
+	.ui-modal-body .fa-info-circle {
+		color: #31708f;//#2980b9;
+	}
+
+
+	.ui-growl {
+		.ui-growl-message-info {
+			color: #31708f;
+			background-color: #d9edf7;
+			border-color: #bce8f1;
+		}
+
+		.ui-growl-message-success {
+			color: #3c763d;
+			background-color: #dff0d8;
+			border-color: #d6e9c6;
+    	}
+
+    	.ui-growl-message-error {
+    		color: #a94442;
+    		background-color: #f2dede;
+    		border-color: #ebccd1;
+    	}
+
+    	.ui-growl-message-warning {
+    		color: #8a6d3b;
+    		background-color: #fcf8e3;
+    		border-color: #faebcc;
+    	}
+	}
+
+/* ---------->>> END WRAPPER <<<----------- */
+
+
+
+/* ---------->>> IX.CUSTOMIZE CSS <<<----------- */
+
+	.c-dl-side-bar {
+		.panel-body {
+			border: $border-default;
+		}
+	}
+
+/* ---------->>> END CUSTOMIZE CSS <<<----------- */

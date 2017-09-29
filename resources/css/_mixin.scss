@@ -1,0 +1,244 @@
+
+/* BACKGROUND */
+
+	$bg-banner-header: 				#f3f3f3;
+	$bg-body: 						#fff;
+
+	$bg-btn-default: 				#fff;
+	$bg-btn-disabled: 				#edeff2;//#aeaeae
+	$bg-btn-gradient-top: 			#fff;
+	$bg-btn-gradient-bottom: 		#e5e5e5;
+
+	
+	$bg-btn-tab-body:				#fff;
+	$bg-btn-tab-default: 			#f3f2f2;
+	$bg-btn-tab-default-active: 	#fff;
+	$bg-btn-tab-primary:			#ddd;
+	$bg-btn-tab-primary-active:		#f3f2f2;
+
+	$bg-nav:                    	#474747;
+
+	$bg-panel-heading-default: 		#fff;
+	$bg-panel-heading-primary:		#474747;
+	$bg-panel-heading-secondary:	#f3f2f2;
+	$bg-panel-body-deafault: 		#fff;
+
+	$bg-primary: 					#f3f2f2;
+
+	$bg-table-header: 				#f3f3f3;
+	$bg-table-header-2:				#eee;
+	$bg-table-stripe-even: 			#f3f3f3;
+	$bg-table-stripe-odd: 			#fff;
+	$theme-g:						#fbfbfb;
+
+	$udv-pagination: 				#575757;
+
+	$wrap-default:					#fff;
+	$wrap-primary:					#f3f2f2;
+
+/* END BACKGROUND */
+
+/* BORDER */
+	
+	$border-btn-default: 			1px solid #d5d5d5;
+	$border-btn-disabled: 			1px solid #9d9d9d;
+
+	$border-bottom: 				1px solid #496089;
+	$border-bottom-none: 			none !important;
+
+	$border-default: 				1px solid #ccc;
+	$border-divider: 				1px solid #000;
+	$border-primary:				1px solid #474747;
+	$border-required: 				#e74c3c !important;
+
+	$border-tab-default-active:		1px solid #fff;
+	$border-tab-primary-active:		1px solid #f3f2f2;
+
+	$border-table: 					1px solid #ccc;
+
+	$border-textbox: 				1px solid #ccc;
+
+	$border-wrap-primary:			1px solid #ccc;
+	
+
+/* END BORDER */
+
+/* HOVER */
+
+	$hover-nav: 					#797979;
+	$hover:							#828282;
+
+/* END HOVER */
+
+/* FONT COLOR */
+
+	$color-blue: 					#2e5992;
+	$color-dark-blue:				#2f556a;
+	$color-btn-disabled: 			#999;
+	$color-default: 				#474747;
+	$color-info:					#31708f;
+	$color-nav:						#fff;
+	$color-panel-heading-default:	#474747;
+	$color-panel-heading-primary:	#fff;
+	$color-panel-heading-secondary: #474747;
+	$color-required:				#e74c3c;
+	$color-transparent:				transparent;
+	$color-white:   				#fff;
+
+/* END FONT COLOR */
+
+/* SHADOW */
+
+	$box-shadow: 					1px 1px 5px #999;
+	$box-shadow-2: 					0 2px 2px 0 rgba(0,0,0,0.14), 0 1px 5px 0 rgba(0,0,0,0.12), 0 3px 1px -2px rgba(0,0,0,0.2);
+	$box-shadow-nav:				2px 2px 5px 2px rgba(51,51,51,0.1);
+
+/* END SHADOW */
+
+/* DEFAULT */
+
+	@mixin btn-active(){
+		background-color: 			$bg-btn-default; 
+		background-image: 			-webkit-gradient(linear, left top, left bottom, from($bg-btn-gradient-bottom), to($bg-btn-gradient-top));
+		background-image: 			-webkit-linear-gradient(top, $bg-btn-gradient-bottom, $bg-btn-gradient-top);
+		background-image: 			-moz-linear-gradient(top, $bg-btn-gradient-bottom, $bg-btn-gradient-top);
+		background-image: 			-ms-linear-gradient(top, $bg-btn-gradient-bottom, $bg-btn-gradient-top);
+		background-image: 			-o-linear-gradient(top, $bg-btn-gradient-bottom, $bg-btn-gradient-top);
+		background-image: 			linear-gradient(top, $bg-btn-gradient-bottom, $bg-btn-gradient-top);
+		background-image: 			none\9;
+	}
+
+	@mixin btn-disabled() {
+		background: 				$bg-btn-disabled;
+		color: 						$color-btn-disabled;
+		border-color: 				$border-btn-disabled;
+	}
+
+	@mixin btnIcon($btn-icon) {
+		color: 					$color-default;
+		border: 				$border-btn-default;
+		background: 			$bg-btn-default;
+		background-image:  		url($btn-icon);
+		background-image: 		url($btn-icon), -webkit-gradient(linear, left top, left bottom, from($bg-btn-gradient-top), to($bg-btn-gradient-bottom));
+		background-image: 		url($btn-icon), -webkit-linear-gradient(top, $bg-btn-gradient-top, $bg-btn-gradient-bottom);
+		background-image: 		url($btn-icon), -moz-linear-gradient(top, $bg-btn-gradient-top, $bg-btn-gradient-bottom);
+		background-image: 		url($btn-icon), -ms-linear-gradient(top, $bg-btn-gradient-top, $bg-btn-gradient-bottom);
+		background-image: 		url($btn-icon), -o-linear-gradient(top, $bg-btn-gradient-top, $bg-btn-gradient-bottom);
+		background-image: 		url($btn-icon), linear-gradient(top, $bg-btn-gradient-top, $bg-btn-gradient-bottom);
+		background-image: 		none\9;
+		border-radius:			5px;
+	}
+
+	@mixin btnIconActive($btn-icon-active) {
+		color: 					$color-default;
+		border: 				$border-btn-default;
+		background: 			$bg-btn-default;
+		background-image:  		url($btn-icon-active);
+		background-image: 		url($btn-icon-active), -webkit-gradient(linear, left top, left bottom, from($bg-btn-gradient-bottom), to($bg-btn-gradient-top));
+		background-image: 		url($btn-icon-active), -webkit-linear-gradient(top, $bg-btn-gradient-bottom, $bg-btn-gradient-top);
+		background-image: 		url($btn-icon-active), -moz-linear-gradient(top, $bg-btn-gradient-bottom, $bg-btn-gradient-top);
+		background-image: 		url($btn-icon-active), -ms-linear-gradient(top, $bg-btn-gradient-bottom, $bg-btn-gradient-top);
+		background-image: 		url($btn-icon-active), -o-linear-gradient(top, $bg-btn-gradient-bottom, $bg-btn-gradient-top);
+		background-image: 		url($btn-icon-active), linear-gradient(top, $bg-btn-gradient-bottom, $bg-btn-gradient-top);
+		background-image: 		none\9;
+		border-radius:			5px;
+	}
+
+	@mixin btn-tab-default-active() {
+		background: 			$bg-btn-tab-default-active;
+		border-bottom:			$border-tab-default-active;
+		color: 					$color-default; 
+	}
+
+	@mixin btn-tab-primary-active() {
+		background: 			$bg-btn-tab-primary-active;
+		border-bottom:			$border-tab-primary-active;
+		color: 					$color-default; 
+	}
+
+	@mixin btn-tab-default() {
+		background: 			$bg-btn-tab-default;
+		border:					$border-default;
+		color: 					$color-default;
+	}
+
+	@mixin btn-tab-primary() {
+		background: 			$bg-btn-tab-primary;
+		border:					$border-default;
+		color: 					$color-default;
+	}
+
+	@mixin btn-theme(){
+		color: 						$color-default;
+		border: 					$border-btn-default;
+		background-color: 			$bg-btn-default;
+		background-image: 			-webkit-gradient(linear, left top, left bottom, from($bg-btn-gradient-top), to($bg-btn-gradient-bottom));
+		background-image: 			-webkit-linear-gradient(top, $bg-btn-gradient-top, $bg-btn-gradient-bottom);
+		background-image: 			-moz-linear-gradient(top, $bg-btn-gradient-top, $bg-btn-gradient-bottom);
+		background-image: 			-ms-linear-gradient(top, $bg-btn-gradient-top, $bg-btn-gradient-bottom);
+		background-image: 			-o-linear-gradient(top, $bg-btn-gradient-top, $bg-btn-gradient-bottom);
+		background-image: 			linear-gradient(top, $bg-btn-gradient-top, $bg-btn-gradient-bottom);
+		background-image: 			none\9;
+		border-radius:				5px;
+	}
+
+	@mixin udv-pagination($direction) {
+        background: $udv-pagination;
+        background: -webkit-linear-gradient($direction, rgba(255,0,0,0), $udv-pagination);
+        background: -o-linear-gradient($direction, rgba(255,0,0,0), $udv-pagination);
+        background: -moz-linear-gradient($direction, rgba(255,0,0,0), $udv-pagination);
+        background: linear-gradient(to $direction, rgba(255,0,0,0), $udv-pagination);
+	}
+
+/* END DEFAULT */
+
+
+/* MIXINS */
+
+	@mixin clearfix() {
+		&:before,
+		&:after {
+			content: " ";
+			display: table;
+		}
+		&:after {
+			clear: both;
+		}
+	}
+
+	@mixin box-sizing($box-size) {
+		-webkit-box-sizing: $box-size;
+		   -moz-box-sizing: $box-size;
+		        box-sizing: $box-size;
+	}
+
+	@mixin text-size-adjust($text-adjust) {
+		-webkit-text-size-adjust: $text-adjust;
+		    -ms-text-size-adjust: $text-adjust;
+    	
+	}
+
+	@mixin user-select($user-select) {
+		-webkit-user-select: $user-select;
+		   -moz-user-select: $user-select;
+		    -ms-user-select: $user-select;
+		        user-select: $user-select;
+	}
+
+	.clearfix {
+	  &:before,
+	  &:after {
+	    content: " ";
+	    display: table;
+	  }
+	  &:after {
+	    clear: both;
+	  }
+	}
+
+	@mixin animation-slider() {
+	    transition-property: all;
+	    transition-duration: .5s;
+	    transition-timing-function: cubic-bezier(0, 1, 0.5, 1);
+	}
+/* END MIXINS */

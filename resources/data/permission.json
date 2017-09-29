@@ -1,0 +1,103 @@
+{
+    "data": 
+    [{
+        "module": [{
+                    "id": 1,
+                    "name": "Dashboard",
+                    "details": "A module which provides case overview, notifications, and workflow charts",
+                    "permission": "full-access",
+                    "child": {}
+                },
+                {
+                    "id": 2,
+                    "name": "Sneakpeek",
+                    "details": "A module which provides case overview, notifications, and workflow charts",
+                    "permission": "no-access",   
+                    "child": [{
+                                "id": 1,
+                                "name": "Process",
+                                "details": "A module which provides case overview, notifications, and workflow charts",
+                                "permission": "full-access",   
+                                "child": {}          
+                            },
+                            {
+                                "id": 2,
+                                "name": "Reports",
+                                "details": "A module which provides case overview, notifications, and workflow charts",
+                                "permission": "custom-access",   
+                                "child": {}            
+                            }]
+                },
+                {
+                    "id": 3,
+                    "name": "Processing",
+                    "details": "A module which provides case overview, notifications, and workflow charts",
+                    "permission": "full-access",   
+                    "child": {}          
+                },
+                {
+                    "id": 4,
+                    "name": "Search",
+                    "details": "A module which provides case overview, notifications, and workflow charts",
+                    "permission": "custom-access",   
+                    "child": [{
+                                "id": 1,
+                                "name": "Search & Filter",
+                                "details": "A module which provides case overview, notifications, and workflow charts",
+                                "permission": "full-access",   
+                                "child": {}          
+                            },
+                            {
+                                "id": 2,
+                                "name": "Quick Search",
+                                "details": "A module which provides case overview, notifications, and workflow charts",
+                                "permission": "custom-access",   
+                                "child": {}            
+                            },
+                            {
+                                "id": 3,
+                                "name": "Visual Search",
+                                "details": "A module which provides case overview, notifications, and workflow charts",
+                                "permission": "custom-access",   
+                                "child": {}            
+                            },
+                            {
+                                "id": 4,
+                                "name": "Document Viewer",
+                                "details": "A module which provides case overview, notifications, and workflow charts",
+                                "permission": "custom-access",   
+                                "child": {}            
+                            }]         
+                }]
+    },
+    {
+        "folder-action": [{
+                    "id": 1,
+                    "name": "All Document Access",
+                    "details": "A module which provides case overview, notifications, and workflow charts",
+                    "permission": "full-access",   
+                    "child": {}
+                },
+                {
+                    "id": 2,
+                    "name": "Source Folder Access",
+                    "details": "A module which provides case overview, notifications, and workflow charts",
+                    "permission": "full-access",   
+                    "child": {}            
+                },
+                {
+                    "id": 3,
+                    "name": "Processing Folder Access",
+                    "details": "A module which provides case overview, notifications, and workflow charts",
+                    "permission": "custom-access",   
+                    "child": {}           
+                },
+                {
+                    "id": 4,
+                    "name": "Private Folder Access",
+                    "details": "A module which provides case overview, notifications, and workflow charts",
+                    "permission": "no-access",   
+                    "child": {}          
+                } ]
+    }]
+}
